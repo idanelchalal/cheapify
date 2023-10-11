@@ -1,6 +1,6 @@
 'use client'
 
-import { SearchProductDTO } from '@/types'
+import { MappedProductsResults, SearchProductDTO } from '@/types'
 
 import ProductCard from './ProductCard'
 
@@ -8,7 +8,7 @@ import TabsContainer from './libs/Tabs/TabsContainer'
 import Tab from './libs/Tabs/Tab'
 
 type MarketsExplorerProps = {
-    data?: SearchProductDTO
+    data?: MappedProductsResults
 }
 
 const MarketsExplorer: React.FC<MarketsExplorerProps> = ({ data: content }) => {

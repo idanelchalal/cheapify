@@ -27,7 +27,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         >
             <div className="relative w-24 md:w-36 aspect-square">
                 <Image
-                    className="rounded-md"
+                    className="rounded-md object-contain"
                     fill
                     src={img || NotFoundIMG}
                     alt={title || 'No description'}

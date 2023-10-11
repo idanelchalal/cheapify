@@ -68,7 +68,22 @@ export type SearchProductDTO = {
     products: ProductDTO[]
 }[]
 
+export type MappedProductsResults = {
+    market: HebrewMarketLabel
+    products: ProductDTO[]
+}[]
+
 export const MarketsMapper: Partial<Record<EnglishMarketLabel, string>> = {
     HAZI_HINAM: 'https://shop.hazi-hinam.co.il/searchResults/',
     RAMI_LEVY: 'https://www.rami-levy.co.il/he/online/search?q=',
+}
+
+export const EnglishToHebrewMarketMapper: Record<
+    EnglishMarketLabel,
+    HebrewMarketLabel
+> = {
+    HAZI_HINAM: 'חצי חינם',
+    OSHER_HAD: 'אושר עד',
+    RAMI_LEVY: 'רמי לוי',
+    YOCHANANOF: 'יוחננוף',
 }
