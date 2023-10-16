@@ -1,18 +1,19 @@
+'use client'
 import Image from 'next/image'
-
 import NotFoundIMG from '../../public/images/not-found.png'
 import IconPopover from './IconPopover'
 import { ShoppingCartIcon } from '@heroicons/react/24/outline'
+import { ProductDTO } from '@/types'
 
 type ProductCardProps = {
-    addToCartFn?: () => void
+    addToCartFn?: (product: ProductDTO) => Promise<unknown>
     img?: string | undefined
     title?: string | undefined
     price?: string | undefined
     brand?: string | undefined
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({
+const ProductCard: React.FC<ProductCardProps> = async ({
     addToCartFn,
     img,
     price,
@@ -42,16 +43,28 @@ const ProductCard: React.FC<ProductCardProps> = ({
                 </div>
 
                 <div className="flex-1 py-4 md:text-base text-lg">
-                    <span>מחיר: {price}</span>
+                    <span>מחיר: {price}₪</span>
                 </div>
             </div>
             <aside
                 id={'controllers_' + title}
                 className=" flex-1 flex items-start justify-end"
             >
-                <IconPopover popoverText="הוסף מוצר לעגלה">
-                    <ShoppingCartIcon className="cursor-pointer text-orange-300 hover:text-orange-400 transition w-8 h-8" />
-                </IconPopover>
+                <div
+                    onClick={async () =>
+                        addToCartFn &&
+                        (await addToCartFn({
+                            brand,
+                            img,
+                            price,
+                            title,
+                        }))
+                    }
+                >
+                    <IconPopover popoverText="הוסף מוצר לעגלה">
+                        <ShoppingCartIcon className="cursor-pointer text-orange-300 hover:text-orange-400 transition w-8 h-8" />
+                    </IconPopover>
+                </div>
             </aside>
         </article>
     )

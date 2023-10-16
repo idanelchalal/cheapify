@@ -7,6 +7,7 @@ const nextConfig = {
         domains: [
             'res.cloudinary.com',
             'hazihinamprod01.blob.core.windows.net',
+            'lh3.googleusercontent.com',
         ],
     },
 }

@@ -1,7 +1,6 @@
 import {
     EnglishMarketLabel,
     EnglishToHebrewMarketMapper,
-    HebrewMarketLabel,
     ProductDTO,
     SearchObject,
 } from '@/types'

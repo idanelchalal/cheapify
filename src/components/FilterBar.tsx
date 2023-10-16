@@ -8,10 +8,11 @@ import {
     EnglishMarketLabel,
     HebrewMarketLabel,
     MultiSelectorOptionType,
-    searchObject,
+    SearchObject,
 } from '@/types'
 
 import { z } from 'zod'
+import LoadingSpinner from './LoadingSpinner'
 
 const searchSchema = z
     .string()
@@ -23,10 +24,11 @@ type StateOfMarkets = Array<
 >
 
 type FilterBarProps = {
-    execSearch?: (queryObject: searchObject) => void
+    execSearch?: (queryObject: SearchObject) => void
+    isSearching?: boolean
 }
 
-const FilterBar: React.FC<FilterBarProps> = ({ execSearch }) => {
+const FilterBar: React.FC<FilterBarProps> = ({ execSearch, isSearching }) => {
     const [markets, setMarkets] = useState<StateOfMarkets | null>()
     const modifyMarkets = useCallback(
         (markets: StateOfMarkets) => setMarkets(markets),
@@ -45,6 +47,7 @@ const FilterBar: React.FC<FilterBarProps> = ({ execSearch }) => {
         [setSearch]
     )
     const searchProduct = useCallback(() => {
+        if (isSearching) return
         const { success } = searchSchema.safeParse(search)
 
         if (!success) {
@@ -57,7 +60,7 @@ const FilterBar: React.FC<FilterBarProps> = ({ execSearch }) => {
             return
         }
 
-        const dto: searchObject = {
+        const dto: SearchObject = {
             product: search,
             markets: markets.map((market) => market.value),
         }
@@ -67,7 +70,7 @@ const FilterBar: React.FC<FilterBarProps> = ({ execSearch }) => {
 
     const disabledBtn = useMemo(
         () => search.trim().length < 2 || !markets || markets.length === 0,
-        [search, markets]
+        [search, markets, isSearching]
     )
 
     return (
@@ -95,10 +98,10 @@ const FilterBar: React.FC<FilterBarProps> = ({ execSearch }) => {
             <div className="filter flex-1">
                 <button
                     onClick={() => searchProduct()}
-                    disabled={disabledBtn}
+                    disabled={disabledBtn || isSearching}
                     className="button-style"
                 >
-                    חפש מוצר
+                    {isSearching ? <LoadingSpinner /> : 'חפש מוצר'}
                 </button>
             </div>
         </section>

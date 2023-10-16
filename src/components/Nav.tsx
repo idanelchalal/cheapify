@@ -2,8 +2,24 @@ import { UserIcon } from '@heroicons/react/24/outline'
 import Logo from './Logo'
 import Link from 'next/link'
 import { EllipsisHorizontalIcon } from '@heroicons/react/24/solid'
+import { useSession } from 'next-auth/react'
+import getUserSession from '@/utils/getUserSession'
+import { UserType } from '@/types'
+import Image from 'next/image'
 
-const Nav = () => {
+const Nav = async () => {
+    const session = await getUserSession()
+    const userBadge = session && (
+        <div className="group h-7 w-7 relative hover:cursor-pointer">
+            <Image
+                sizes="(max-width: 768px) 28px, (max-width: 1200px) 28px"
+                alt="user-profile-avatar"
+                className="group-hover:shadow-md group-hover:scale-105 transition object-contain rounded-full"
+                fill
+                src={session.user?.image!}
+            />
+        </div>
+    )
     return (
         <header id="main_header">
             <Link href={'/'}>
@@ -12,8 +28,12 @@ const Nav = () => {
             <nav className="flex flex-row gap-x-1">
                 {/* User account Icon */}
                 <div className="group flex items-center justify-center">
-                    <UserIcon className="group-hover:scale-100 scale-95 absolute h-7 w-7 z-10 hover:cursor-pointer text-orange-300" />
-                    <div className="group-hover:scale-100 scale-0 transition z-0 rounded-full bg-orange-50 h-8 w-8"></div>
+                    {userBadge || (
+                        <>
+                            <UserIcon className="group-hover:scale-100 scale-95 absolute h-7 w-7 z-10 hover:cursor-pointer text-orange-300" />
+                            <div className="group-hover:scale-100 scale-0 transition z-0 rounded-full bg-orange-50 h-8 w-8"></div>
+                        </>
+                    )}
                 </div>
 
                 {/* Options Icon */}

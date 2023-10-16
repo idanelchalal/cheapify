@@ -2,6 +2,7 @@ import Nav from '@/components/Nav'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter, Poppins } from 'next/font/google'
+import { AuthProvider } from '@/components/AuthProvider'
 
 const poppins = Poppins({
     weight: ['100', '200', '300', '400'],
@@ -14,7 +15,7 @@ export const metadata: Metadata = {
     description: 'השוואת סלי קניות בין הרשתות המובילות בישראל',
 }
 
-export default function RootLayout({
+export default async function RootLayout({
     children,
 }: {
     children: React.ReactNode
@@ -23,8 +24,10 @@ export default function RootLayout({
         <html lang="en">
             <body className={poppins.className}>
                 <main className="max-w-7xl mx-auto overflow-x-hidden">
-                    <Nav />
-                    <main id="page-wrapper mt-12">{children}</main>
+                    <AuthProvider>
+                        <Nav />
+                        <main id="page-wrapper mt-12">{children}</main>
+                    </AuthProvider>
                 </main>
             </body>
         </html>

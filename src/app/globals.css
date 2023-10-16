@@ -16,5 +16,9 @@
 }
 
 .button-style {
-    @apply bg-yellow-300/80 hover:bg-orange-400 disabled:cursor-not-allowed disabled:bg-neutral-300 hover:scale-110 active:scale-100 transition text-white py-2 px-4 rounded-md
+    @apply bg-yellow-300/80 hover:bg-orange-400 disabled:cursor-not-allowed disabled:bg-neutral-300 hover:scale-110 active:scale-100 transition text-white py-2 px-4 rounded-md w-fit
+}
+
+.orange-yellow-gradient-text {
+    @apply bg-gradient-to-r text-transparent w-auto md:text-2xl font-semibold from-yellow-300 to-orange-500 bg-clip-text
 }

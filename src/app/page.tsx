@@ -29,7 +29,7 @@ export default function Home() {
                     אז למה אתה מחכה?
                 </h1>
                 <Link
-                    href={'/cart'}
+                    href={'/explorer'}
                     className="direction-rtl button-style w-fit shadow-md"
                 >
                     הרכב סל קניות עכשיו!{' '}

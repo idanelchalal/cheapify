@@ -50,7 +50,17 @@ const scrapeProducts = async (market: EnglishMarketLabel, html: string) => {
         .map((title) => $(title).text())
     const prices = $(MarketsLocators[market]?.prices)
         .toArray()
-        .map((price) => $(price).text())
+        .map((price) => {
+            if (market === 'HAZI_HINAM') {
+                return $(price)
+                    .text()
+                    .replace('מחיר', '')
+                    .replace('₪', '')
+                    .trim()
+            }
+
+            return $(price).text().trim()
+        })
     const imgs = $(MarketsLocators[market]?.imgs)
         .toArray()
         .map((img) => $(img).attr('src'))

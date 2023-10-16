@@ -1,4 +1,6 @@
+import { InferSelectModel } from 'drizzle-orm'
 import { z } from 'zod'
+import { products, accounts, sessions, users } from './drizzle/schema'
 
 // Zod schemas
 export const EnglishMarketLabelSchema = z.enum([
@@ -87,3 +89,14 @@ export const EnglishToHebrewMarketMapper: Record<
     RAMI_LEVY: 'רמי לוי',
     YOCHANANOF: 'יוחננוף',
 }
+
+// Drizzle types
+
+export type AccountType = InferSelectModel<typeof accounts>
+export type SessionType = InferSelectModel<typeof sessions>
+export type UserType = InferSelectModel<typeof users>
+export type ProductType = InferSelectModel<typeof products>
+
+// Drizle types DTOs
+export type UserTypeDTO = Omit<InferSelectModel<typeof users>, 'id'>
+export type ProductTypeDTO = Omit<ProductType, 'addedAt' | 'id'>
