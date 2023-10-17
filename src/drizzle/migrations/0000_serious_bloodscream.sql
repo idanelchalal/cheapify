@@ -17,9 +17,10 @@ CREATE TABLE IF NOT EXISTS "products" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"userId" text NOT NULL,
 	"addedAt" date DEFAULT now(),
-	"price" integer NOT NULL,
+	"price" double precision NOT NULL,
 	"productName" text NOT NULL,
-	"additionalInfo" text
+	"additionalInfo" text,
+	"market" text NOT NULL
 );
 --> statement-breakpoint
 CREATE TABLE IF NOT EXISTS "session" (

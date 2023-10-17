@@ -5,64 +5,8 @@
     {
       "idx": 0,
       "version": "5",
-      "when": 1697203099808,
-      "tag": "0000_tidy_stick",
-      "breakpoints": true
-    },
-    {
-      "idx": 1,
-      "version": "5",
-      "when": 1697450099498,
-      "tag": "0001_hesitant_puck",
-      "breakpoints": true
-    },
-    {
-      "idx": 2,
-      "version": "5",
-      "when": 1697450200403,
-      "tag": "0002_concerned_ben_grimm",
-      "breakpoints": true
-    },
-    {
-      "idx": 3,
-      "version": "5",
-      "when": 1697459026349,
-      "tag": "0003_strange_sprite",
-      "breakpoints": true
-    },
-    {
-      "idx": 4,
-      "version": "5",
-      "when": 1697459257611,
-      "tag": "0004_tiny_vulcan",
-      "breakpoints": true
-    },
-    {
-      "idx": 5,
-      "version": "5",
-      "when": 1697459356028,
-      "tag": "0005_gigantic_rage",
-      "breakpoints": true
-    },
-    {
-      "idx": 6,
-      "version": "5",
-      "when": 1697459534619,
-      "tag": "0006_absurd_sunspot",
-      "breakpoints": true
-    },
-    {
-      "idx": 7,
-      "version": "5",
-      "when": 1697459568686,
-      "tag": "0007_mysterious_thunderbird",
-      "breakpoints": true
-    },
-    {
-      "idx": 8,
-      "version": "5",
-      "when": 1697462923210,
-      "tag": "0008_elite_rocket_raccoon",
+      "when": 1697541658999,
+      "tag": "0000_serious_bloodscream",
       "breakpoints": true
     }
   ]

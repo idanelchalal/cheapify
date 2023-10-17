@@ -70,8 +70,12 @@ export type SearchProductDTO = {
     products: ProductDTO[]
 }[]
 
-export type MappedProductsResults = {
+export type MappedHebrewProductsResults = {
     market: HebrewMarketLabel
+    products: ProductDTO[]
+}[]
+export type MappedProductsResults = {
+    market: EnglishMarketLabel
     products: ProductDTO[]
 }[]
 
@@ -88,6 +92,16 @@ export const EnglishToHebrewMarketMapper: Record<
     OSHER_HAD: 'אושר עד',
     RAMI_LEVY: 'רמי לוי',
     YOCHANANOF: 'יוחננוף',
+}
+
+export const HebrewToEnglishMarketMapper: Record<
+    HebrewMarketLabel,
+    EnglishMarketLabel
+> = {
+    'אושר עד': 'OSHER_HAD',
+    'חצי חינם': 'HAZI_HINAM',
+    'רמי לוי': 'RAMI_LEVY',
+    יוחננוף: 'YOCHANANOF',
 }
 
 // Drizzle types

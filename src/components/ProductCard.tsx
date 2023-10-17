@@ -3,23 +3,56 @@ import Image from 'next/image'
 import NotFoundIMG from '../../public/images/not-found.png'
 import IconPopover from './IconPopover'
 import { ShoppingCartIcon } from '@heroicons/react/24/outline'
-import { ProductDTO } from '@/types'
+import { EnglishMarketLabel, ProductDTO, ProductTypeDTO } from '@/types'
+import { addProductToCart } from '@/actions'
+import { useSession } from 'next-auth/react'
+import { useEffect, useMemo, useRef } from 'react'
+
+import { experimental_useFormStatus as useFormStatus } from 'react-dom'
 
 type ProductCardProps = {
-    addToCartFn?: (product: ProductDTO) => Promise<unknown>
     img?: string | undefined
     title?: string | undefined
     price?: string | undefined
     brand?: string | undefined
+    market: EnglishMarketLabel
 }
 
 const ProductCard: React.FC<ProductCardProps> = async ({
-    addToCartFn,
     img,
     price,
     title,
     brand,
+    market,
 }) => {
+    const { pending } = useFormStatus()
+    const { data } = useSession()
+    const formData = useRef<HTMLFormElement>(null)
+    const ProductDTO = {
+        additionalInfo: brand as string,
+        price: Number(price as string),
+        productName: title as string,
+        userId: data?.user.id as string,
+        market,
+    } satisfies ProductTypeDTO
+
+    const hiddenInput = useMemo(() => {
+        const input = document.createElement('input')
+        input.classList.add('hidden')
+        input.type = 'text'
+        input.name = 'product'
+        input.value = JSON.stringify(ProductDTO)
+
+        return input
+    }, [ProductDTO])
+
+    useEffect(() => {
+        if (formData.current !== null) {
+            const form = formData.current
+            form.appendChild(hiddenInput)
+        }
+    }, [])
+
     return (
         <article
             id={'prod-card_' + title}
@@ -31,6 +64,7 @@ const ProductCard: React.FC<ProductCardProps> = async ({
                     className="rounded-md object-contain"
                     fill
                     src={img || NotFoundIMG}
+                    sizes="(max-width: 768px) 144px, 96px"
                     alt={title || 'No description'}
                 />
             </div>
@@ -50,21 +84,18 @@ const ProductCard: React.FC<ProductCardProps> = async ({
                 id={'controllers_' + title}
                 className=" flex-1 flex items-start justify-end"
             >
-                <div
-                    onClick={async () =>
-                        addToCartFn &&
-                        (await addToCartFn({
-                            brand,
-                            img,
-                            price,
-                            title,
-                        }))
-                    }
-                >
-                    <IconPopover popoverText="הוסף מוצר לעגלה">
-                        <ShoppingCartIcon className="cursor-pointer text-orange-300 hover:text-orange-400 transition w-8 h-8" />
-                    </IconPopover>
-                </div>
+                <form action={addProductToCart} ref={formData}>
+                    <button
+                        className="disabled:hover:cursor-not-allowed"
+                        disabled={pending}
+                        type="submit"
+                        aria-disabled={pending}
+                    >
+                        <IconPopover popoverText="הוסף מוצר לעגלה">
+                            <ShoppingCartIcon className="cursor-pointer text-orange-300 hover:text-orange-400 transition w-8 h-8" />
+                        </IconPopover>
+                    </button>
+                </form>
             </aside>
         </article>
     )

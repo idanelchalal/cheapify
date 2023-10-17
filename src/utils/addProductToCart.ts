@@ -23,6 +23,5 @@ export async function addProductToCart(product: ProductTypeDTO) {
 
         .catch((err) => console.log(err))
 
-    console.log(query)
     return
 }

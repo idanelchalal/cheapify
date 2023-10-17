@@ -10,7 +10,7 @@ import {
 } from 'drizzle-orm/pg-core'
 
 import type { AdapterAccount } from '@auth/core/adapters'
-import { randomUUID } from 'crypto'
+import { EnglishMarketLabelSchema } from '@/types'
 
 export const users = pgTable('user', {
     id: text('id').notNull().primaryKey(),
@@ -71,4 +71,7 @@ export const products = pgTable('products', {
     price: doublePrecision('price').notNull(),
     productName: text('productName').notNull(),
     additionalInfo: text('additionalInfo'),
+    market: text('market', {
+        enum: ['HAZI_HINAM', 'OSHER_HAD', 'RAMI_LEVY', 'YOCHANANOF'],
+    }).notNull(),
 })

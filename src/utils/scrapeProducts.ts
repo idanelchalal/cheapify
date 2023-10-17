@@ -1,6 +1,7 @@
 import {
     EnglishMarketLabel,
     EnglishToHebrewMarketMapper,
+    MappedProductsResults,
     ProductDTO,
     SearchObject,
 } from '@/types'
@@ -10,11 +11,11 @@ export default async function (searchObject: SearchObject) {
     const {
         data,
     }: {
-        data: { market: EnglishMarketLabel; products: ProductDTO[] }[]
+        data: MappedProductsResults
     } = await axios.post('/api/scrape', searchObject)
 
     const mapped = data.map((market) => ({
-        market: EnglishToHebrewMarketMapper[market.market],
+        market: market.market,
         products: market.products,
     }))
 

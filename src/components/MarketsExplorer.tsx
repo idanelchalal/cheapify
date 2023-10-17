@@ -1,18 +1,25 @@
 'use client'
 
-import { MappedProductsResults, ProductDTO, ProductTypeDTO } from '@/types'
+import {
+    EnglishMarketLabel,
+    EnglishToHebrewMarketMapper,
+    HebrewMarketLabel,
+    HebrewToEnglishMarketMapper,
+    MappedProductsResults,
+    ProductDTO,
+    ProductTypeDTO,
+} from '@/types'
 
 import ProductCard from './ProductCard'
 
 import TabsContainer from './libs/Tabs/TabsContainer'
 import Tab from './libs/Tabs/Tab'
+
 import { useSession } from 'next-auth/react'
-import { useCallback } from 'react'
-import { addProductToCart } from '@/utils/addProductToCart'
 
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import axios from 'axios'
+import React from 'react'
 
 type MarketsExplorerProps = {
     data?: MappedProductsResults
@@ -20,21 +27,6 @@ type MarketsExplorerProps = {
 
 const MarketsExplorer: React.FC<MarketsExplorerProps> = ({ data: content }) => {
     const { data } = useSession()
-
-    const addToCartFn = useCallback(
-        async (product: ProductDTO) => {
-            if (!data?.user.id) throw new Error('USER_SESSION_INVALID')
-            const productToAdd = {
-                additionalInfo: product.brand || 'No brand name',
-                price: Number(product.price) || 0,
-                productName: product.title || 'No product name',
-                userId: data?.user.id,
-            } satisfies ProductTypeDTO
-
-            await axios.post('api/cart', productToAdd)
-        },
-        [data]
-    )
 
     const noContentPlaceholder = (
         <>
@@ -52,17 +44,29 @@ const MarketsExplorer: React.FC<MarketsExplorerProps> = ({ data: content }) => {
                     content?.map((market) => {
                         if (market.products.length === 0)
                             return (
-                                <Tab title={market.market}>
+                                <Tab
+                                    title={
+                                        EnglishToHebrewMarketMapper[
+                                            market.market as EnglishMarketLabel
+                                        ]
+                                    }
+                                >
                                     לא נמצאו מוצרים...
                                 </Tab>
                             )
 
                         return (
-                            <Tab title={market.market}>
+                            <Tab
+                                title={
+                                    EnglishToHebrewMarketMapper[
+                                        market.market as EnglishMarketLabel
+                                    ]
+                                }
+                            >
                                 {market.products.map((product) => (
                                     <ProductCard
+                                        market={market.market}
                                         key={product.title + product.price!}
-                                        addToCartFn={addToCartFn}
                                         {...product}
                                     />
                                 ))}

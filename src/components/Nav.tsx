@@ -2,9 +2,7 @@ import { UserIcon } from '@heroicons/react/24/outline'
 import Logo from './Logo'
 import Link from 'next/link'
 import { EllipsisHorizontalIcon } from '@heroicons/react/24/solid'
-import { useSession } from 'next-auth/react'
 import getUserSession from '@/utils/getUserSession'
-import { UserType } from '@/types'
 import Image from 'next/image'
 
 const Nav = async () => {
@@ -12,7 +10,7 @@ const Nav = async () => {
     const userBadge = session && (
         <div className="group h-7 w-7 relative hover:cursor-pointer">
             <Image
-                sizes="(max-width: 768px) 28px, (max-width: 1200px) 28px"
+                sizes="(max-width: 768px) 28px"
                 alt="user-profile-avatar"
                 className="group-hover:shadow-md group-hover:scale-105 transition object-contain rounded-full"
                 fill
