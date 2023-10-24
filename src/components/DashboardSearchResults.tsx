@@ -3,6 +3,7 @@ import { EnglishMarketLabel, ProductDTO } from '@/types'
 import { useMemo } from 'react'
 import ProductCard from './ProductCard'
 import { MutatingDots } from 'react-loader-spinner'
+import { useSession } from 'next-auth/react'
 
 const DashboardSearchResults = ({
     data,
@@ -33,7 +34,7 @@ const DashboardSearchResults = ({
                         brand={prod.brand}
                         title={prod.title}
                         img={prod.img}
-                        key={prod.title! + +prod.brand!}
+                        key={prod.title! + prod.price!}
                         price={prod.price}
                     />
                 ))) ||

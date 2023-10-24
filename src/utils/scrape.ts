@@ -67,7 +67,12 @@ const scrapeProducts = async (market: EnglishMarketLabel, html: string) => {
         })
     const imgs = $(MarketsLocators[market]?.imgs)
         .toArray()
-        .map((img) => $(img).attr('src'))
+        .map((img) => {
+            if (market === 'RAMI_LEVY') {
+                return $(img).attr('src')?.split('webp/')[1]
+            }
+            return $(img).attr('src')
+        })
 
     const brands = $(MarketsLocators[market]?.brand)
         .toArray()
