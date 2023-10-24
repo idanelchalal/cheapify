@@ -1,12 +1,17 @@
 'use client'
 import Image from 'next/image'
+
 import NotFoundIMG from '../../public/images/not-found.png'
+
 import IconPopover from './IconPopover'
 import { ShoppingCartIcon } from '@heroicons/react/24/outline'
-import { EnglishMarketLabel, ProductDTO, ProductTypeDTO } from '@/types'
-import { addProductToCart } from '@/actions'
+
+import { EnglishMarketLabel, ProductTypeDTO } from '@/types'
+
 import { useSession } from 'next-auth/react'
 import { useEffect, useMemo, useRef } from 'react'
+
+import { addProductToCart } from '@/actions'
 
 import { experimental_useFormStatus as useFormStatus } from 'react-dom'
 
@@ -18,7 +23,7 @@ type ProductCardProps = {
     market: EnglishMarketLabel
 }
 
-const ProductCard: React.FC<ProductCardProps> = async ({
+const ProductCard: React.FC<ProductCardProps> = ({
     img,
     price,
     title,
@@ -57,7 +62,7 @@ const ProductCard: React.FC<ProductCardProps> = async ({
         <article
             id={'prod-card_' + title}
             aria-label={title}
-            className="hover:bg-neutral-100 even:bg-neutral-50 transition w-full p-3 flex flex-row gap-x-4"
+            className="hover:bg-neutral-100 even:bg-neutral-50 transition w-full p-4 flex flex-col gap-y-1 md:gap-0 md:flex-row md:gap-x-4"
         >
             <div className="relative w-24 md:w-36 aspect-square">
                 <Image
@@ -70,7 +75,7 @@ const ProductCard: React.FC<ProductCardProps> = async ({
             </div>
             <div className="flex-1 flex flex-col text-neutral-500 font-semibold justify-between">
                 <div>
-                    <h1 className="text-lg md:text-xl">{title}</h1>
+                    <h2 className="text-lg md:text-xl">{title}</h2>
                     <span className="text-neutral-400 text-base md:text-xs font-thin">
                         {brand}
                     </span>

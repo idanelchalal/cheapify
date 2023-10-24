@@ -72,6 +72,6 @@ export const products = pgTable('products', {
     productName: text('productName').notNull(),
     additionalInfo: text('additionalInfo'),
     market: text('market', {
-        enum: ['HAZI_HINAM', 'OSHER_HAD', 'RAMI_LEVY', 'YOCHANANOF'],
+        enum: ['HAZI_HINAM', 'OSHER_HAD', 'RAMI_LEVY', 'YOCHANANOF', 'VICTORY'],
     }).notNull(),
 })

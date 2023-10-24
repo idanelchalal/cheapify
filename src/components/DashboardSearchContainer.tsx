@@ -17,14 +17,13 @@ const DashboardSearchContainer = () => {
     const {
         data: rawData,
         isPending,
-        isSuccess,
-        isIdle,
         mutate,
     } = useMutation({
         mutationKey: ['getProducts'],
     })
 
     const [marketsBar, toggleMarketsBar] = useState<number>(0)
+
     const [tab, setTab] = useState<EnglishMarketLabel | null>()
     const selectTab = (market: EnglishMarketLabel | null) => {
         if (tab !== market) setTab(market)
@@ -43,7 +42,10 @@ const DashboardSearchContainer = () => {
         }
 
         toggleMarketsBar(1)
-        return dto
+        return dto as Map<
+            EnglishMarketLabel,
+            { market: EnglishMarketLabel; products: ProductDTO[] }
+        >
     }, [rawData, toggleMarketsBar])
 
     return (
@@ -111,9 +113,19 @@ const DashboardSearchContainer = () => {
                 </div>
             </motion.div>
 
-            <div className="my-6 flex-1" id="results-locator">
-                <DashboardSearchResults data={data} isLoading={isPending} />
-            </div>
+            <motion.div
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{ opacity: 1, scale: (tab && 1) || 0 }}
+                transition={{ duration: 0.3 }}
+            >
+                <div className="my-6 flex-1" id="results-locator">
+                    <DashboardSearchResults
+                        selectedTab={tab}
+                        data={data || null}
+                        isLoading={isPending}
+                    />
+                </div>
+            </motion.div>
         </div>
     )
 }
