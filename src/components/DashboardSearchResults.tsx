@@ -5,11 +5,10 @@ const DashboardSearchResults = ({
     data: null | unknown
     isLoading: boolean
 }) => {
-    console.log(data)
     return (
         <div
             id="search-results-container"
-            className="bg-white flex-1 rounded-sm"
+            className="bg-white flex-1 rounded-sm h-full w-full"
         >
             {!data && 'תוצאות החיפוש יופיעו כאן.'}
         </div>
