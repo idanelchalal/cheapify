@@ -1,7 +1,11 @@
-import React from 'react'
+import DashboardSearchContainer from '@/components/DashboardSearchContainer'
 
 const ExplorerPage = () => {
-    return <div>page</div>
+    return (
+        <article id="explorer-container" className="flex-1 flex flex-col">
+            <DashboardSearchContainer />
+        </article>
+    )
 }
 
 export default ExplorerPage

@@ -29,7 +29,11 @@ const getBrowser = async () =>
     })
 
 const getPageHTML = async (market: EnglishMarketLabel, product: string) => {
-    const marketUrl = MarketsMapper[market] + product
+    const path = MarketsMapper[market]
+
+    if (!path) return
+
+    const marketUrl = path + product
 
     const browser = await getBrowser()
     const page = await browser.newPage()
@@ -77,6 +81,9 @@ export const scrape = async (
     product: string
 ): Promise<ProductDTO[]> => {
     const html = await getPageHTML(market, product)
+
+    if (!html) return []
+
     const products = await scrapeProducts(market, html)
 
     const organized: ProductDTO[] = []

@@ -1,10 +1,4 @@
-import {
-    EnglishMarketLabel,
-    EnglishToHebrewMarketMapper,
-    MappedProductsResults,
-    ProductDTO,
-    SearchObject,
-} from '@/types'
+import { MappedProductsResults, SearchObject } from '@/types'
 import axios from 'axios'
 
 export default async function (searchObject: SearchObject) {

@@ -4,29 +4,33 @@ import {
     MultiSelectorOptionType,
 } from '@/types'
 
-export const marketsObject = [
+export const marketsObject: {
+    id: EnglishMarketLabel
+    alt: string
+    imgSrc: string
+}[] = [
     {
-        id: 'rami-levy',
+        id: 'RAMI_LEVY',
         alt: 'rami-levy-logo',
         imgSrc: '/images/rami-levy-logo.png',
     },
     {
-        id: 'hazi-hinam',
+        id: 'HAZI_HINAM',
         alt: 'hazi-hinam-logo',
         imgSrc: '/images/hazi-hinam-logo.png',
     },
     {
-        id: 'yochananof',
+        id: 'YOCHANANOF',
         alt: 'yochananof-logo',
         imgSrc: '/images/yochananof-logo.png',
     },
     {
-        id: 'osher-had',
+        id: 'OSHER_HAD',
         alt: 'osher-had-logo',
         imgSrc: '/images/osher-had-logo.png',
     },
     {
-        id: 'victory',
+        id: 'VICTORY',
         alt: 'victory-logo',
         imgSrc: '/images/victory-logo.png',
     },

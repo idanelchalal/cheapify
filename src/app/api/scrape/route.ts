@@ -1,5 +1,4 @@
 import {
-    EnglishMarketLabel,
     ProductDTO,
     SearchObject,
     SearchObjectSchema,

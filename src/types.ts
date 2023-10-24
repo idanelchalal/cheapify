@@ -8,6 +8,7 @@ export const EnglishMarketLabelSchema = z.enum([
     'OSHER_HAD',
     'RAMI_LEVY',
     'YOCHANANOF',
+    'VICTORY',
 ])
 
 export const HebrewMarketLabelSchema = z.enum([
@@ -15,6 +16,7 @@ export const HebrewMarketLabelSchema = z.enum([
     'אושר עד',
     'רמי לוי',
     'יוחננוף',
+    'ויקטורי',
 ])
 
 export const SearchObjectSchema = z.object({
@@ -92,6 +94,7 @@ export const EnglishToHebrewMarketMapper: Record<
     OSHER_HAD: 'אושר עד',
     RAMI_LEVY: 'רמי לוי',
     YOCHANANOF: 'יוחננוף',
+    VICTORY: 'ויקטורי',
 }
 
 export const HebrewToEnglishMarketMapper: Record<
@@ -99,6 +102,7 @@ export const HebrewToEnglishMarketMapper: Record<
     EnglishMarketLabel
 > = {
     'אושר עד': 'OSHER_HAD',
+    ויקטורי: 'VICTORY',
     'חצי חינם': 'HAZI_HINAM',
     'רמי לוי': 'RAMI_LEVY',
     יוחננוף: 'YOCHANANOF',

@@ -26,6 +26,7 @@ export default async function RootLayout({
                 <main className="max-w-7xl mx-auto overflow-x-hidden">
                     <AuthProvider>
                         <Nav />
+
                         <main id="page-wrapper mt-12">{children}</main>
                     </AuthProvider>
                 </main>

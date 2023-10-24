@@ -4,7 +4,6 @@ import db from '@/drizzle/db'
 import { createInsertSchema } from 'drizzle-zod'
 
 import { products } from '@/drizzle/schema'
-import { revalidatePath } from 'next/cache'
 
 export type addProductToCartFnType = typeof addProductToCart
 
