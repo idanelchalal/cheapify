@@ -92,7 +92,7 @@ export const scrape = async (
     const products = await scrapeProducts(market, html)
 
     const organized: ProductDTO[] = []
-    for (let i = 0; i < products.titles.length && i < 15; i++) {
+    for (let i = 0; i < products.titles.length && i < 20; i++) {
         const { titles, brands, imgs, prices }: ProductsArrayDTO = products
 
         organized.push({

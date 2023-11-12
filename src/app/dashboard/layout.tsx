@@ -13,45 +13,45 @@ import RQProvider from '@/components/RQProvider'
 import ToastProvider from '@/components/ToastProvider'
 
 const poppins = Poppins({
-    weight: ['100', '200', '300', '400'],
-    subsets: ['devanagari', 'latin', 'latin-ext'],
-    preload: true,
+  weight: ['100', '200', '300', '400'],
+  subsets: ['devanagari', 'latin', 'latin-ext'],
+  preload: true,
 })
 
 export const metadata: Metadata = {
-    title: 'Cheapify - פאנל אישי',
-    description: 'השוואת סלי קניות בין הרשתות המובילות בישראל',
+  title: 'Cheapify - פאנל אישי',
+  description: 'השוואת סלי קניות בין הרשתות המובילות בישראל',
 }
 
 export default async function RootLayout({
-    children,
+  children,
 }: {
-    children: React.ReactNode
+  children: React.ReactNode
 }) {
-    const userSession = await getUserSession()
-    if (!userSession) redirect('/')
+  const userSession = await getUserSession()
+  if (!userSession) redirect('/auth')
 
-    return (
-        <html lang="en">
-            <body className={poppins.className}>
-                <main
-                    id="dashboard-container"
-                    className="w-full bg-gray-100 h-screen overflow-x-hidden overflow-y-hidden flex flex-col"
-                >
-                    <AuthProvider>
-                        <RQProvider>
-                            <ToastProvider />
-                            <DashboardUpperNav session={userSession} />
-                            <section
-                                id="dashboard-dynamic-wrapper"
-                                className="flex-1 overflow-x-hidden overflow-y-scroll flex flex-col"
-                            >
-                                {children}
-                            </section>
-                        </RQProvider>
-                    </AuthProvider>
-                </main>
-            </body>
-        </html>
-    )
+  return (
+    <html lang="en">
+      <body className={poppins.className}>
+        <main
+          id="dashboard-container"
+          className="w-full bg-gray-100 h-screen overflow-x-hidden overflow-y-hidden flex flex-col"
+        >
+          <AuthProvider>
+            <RQProvider>
+              <ToastProvider />
+              <DashboardUpperNav session={userSession} />
+              <section
+                id="dashboard-dynamic-wrapper"
+                className="flex-1 overflow-x-hidden overflow-y-scroll flex flex-col"
+              >
+                {children}
+              </section>
+            </RQProvider>
+          </AuthProvider>
+        </main>
+      </body>
+    </html>
+  )
 }

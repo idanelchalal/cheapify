@@ -94,3 +94,11 @@
     @apply bg-background text-foreground;
   }
 }
+
+input[type=checkbox]:checked ~ #badge-menu{
+  display: block !important;
+}
+
+input[type=checkbox] ~ #badge-menu{
+  display:none;
+}
