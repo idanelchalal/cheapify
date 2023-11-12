@@ -13,7 +13,7 @@ const UserBadge = ({
 }) => {
   const { user } = userSession
   return (
-    <div className="group  relative" id="user-badge-container">
+    <div className="group relative" id="user-badge-container">
       <label
         htmlFor="menu-toggle"
         className="flex items-center gap-x-2 cursor-pointer"
@@ -40,15 +40,22 @@ const UserBadge = ({
           <div id="badge-menu">
             <label htmlFor="menu-toggle">
               <ul
-                className="border list-none bg-neutral-100 rounded-md overflow-hidden 
+                className="border list-none bg-neutral-50 rounded-md overflow-hidden 
               space-y-2 py-1
               text-sm cursor-pointer text-center"
               >
-                <li className="hover:text-yellow-400 transition hover:bg-neutral-50 hover:font-semibold py-1">
-                  <Link href="/auth/signout">התנתק</Link>
+                <li className="hover:text-yellow-400 transition hover:bg-neutral-100 hover:font-semibold py-1">
+                  <Link className="w-full h-full block" href="/auth/signout">
+                    התנתק
+                  </Link>
                 </li>
-                <li className="hover:text-yellow-400 transition hover:bg-neutral-50 hover:font-semibold py-1">
-                  <Link href={'/dashboard/cart'}>העגלה שלי</Link>
+                <li className="hover:text-yellow-400 transition hover:bg-neutral-100 hover:font-semibold py-1">
+                  <Link
+                    className="w-full h-full block"
+                    href={'/dashboard/cart'}
+                  >
+                    העגלה שלי
+                  </Link>
                 </li>
               </ul>
             </label>

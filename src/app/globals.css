@@ -96,9 +96,29 @@
 }
 
 input[type=checkbox]:checked ~ #badge-menu{
-  display: block !important;
+  animation: menuEnter ease-in-out 300ms forwards;
+  @apply opacity-100;
 }
 
-input[type=checkbox] ~ #badge-menu{
-  display:none;
+input[type=checkbox]:not(:checked) ~ #badge-menu {
+  animation: menuExit ease-in-out 300ms forwards; /* New animation for exit */
+}
+
+@keyframes menuExit {
+  from {
+    @apply opacity-100 block;
+  }
+
+  to {
+    @apply opacity-0 hidden;
+  }
+}
+
+@keyframes menuEnter {
+ 0% {
+  @apply opacity-0 hidden;
+}
+  100% {
+   @apply opacity-100 block; 
+  }
 }
